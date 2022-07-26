@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<header>
+    <%- include('partials/header') %>
+</header>
+<body>
+    <h1>About Page</h1>
+    <p>This app uses data from the U.S. Department of Agriculture's FoodData Central API. <br>
+    "FoodData Central is an integrated data system that provides expanded nutrient profile data and links to related agricultural and experimental research."<br>
+        Learn more at <a href="https://fdc.nal.usda.gov/index.html">https://fdc.nal.usda.gov/index.html</a> 
+    </p>
+
+    <h1>How to use this app</h1>
+    <h2>Create a Meal</h2>
+    <p>To get started, first start by selecting New Meal on the homepage.
+        <br>Then, create a meal by entering a meal name and description and click save.  
+    </p>
+    <h2>Add food to your meal.</h2>
+    <p>To add food to your meal, use the search bar in the top right to search for food items.
+        <br>You will then get a list of results based on your search. 
+        <br>Click "Nutritional Info" To learn more about a specific food item or add it to your meal.
+        <br>You will then be given a more comprehensive nutrient list for the specified food item and options for adding it to a meal.
+        <br>To add the food item to a meal, specify the meal from the drop menu and enter the number of grams (or it will default to 100).
+        <br>After clicking Add to Meal, you will then be taken to the meal page with the food item added to your meal.
+        <br>To add more food items to your meal, repeat this process.
+    </p>
+
+    <h2>Meals</h2>
+    <p>The meal page will display the full list of foods added to your meal, and a full list of the amount and types of nutrients your meal contains.
+        <br>To change the name or edit the description of a meal, click the edit button on the meal page.
+        <br>You can also see the nutrient content of specific food items by clicking on the "Show Nutrients" button next to the listed food item.
+        <br>Remove a food item from your meal by clicking "Remove" button.
+        <br>The nutrient list for your meal can be customized by adding or removing specific nutrients by entering the nutrient's 'Number' listed in the table.
+        <br>To add or remove multiple nutrients at a time, enter each number separated by a comma (e.g. "201,204,203").
+        <br>To see the full list of nutrients and their id numbers, go to the NutrientList page by clicking in the center of the navigation bar at the top of the page.
+    </p>
+
+    <h2>NutrientList</h2>
+    <p>The full nutrient list is found by clicking the NutrientList at the center of the navbar</p>
+    <p>Here you can see the full list of nutrients and their id numbers.</p>
+    <p>You can also add nutrient info to meal from this page by checking the box next to each nutrient you want to add, selecting the meal from the dropdown, and clicking Add to Meal</p>
+    
+</body>
+</html>

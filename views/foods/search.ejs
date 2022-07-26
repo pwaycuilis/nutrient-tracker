@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<header>
+    <%- include('../partials/header') %>
+</header>
+<body>
+    
+    <div class="header">Total Hits: <%= pageInfo.totalHits %></div>
+    <div class="header">Results per page: <%= pageInfo.pageSize %></div>
+    <div class="header">Current Page: <%= pageInfo.currentPage %></div>
+    <div class="header">Total Pages: <%= pageInfo.totalPages %></div>
+    
+    
+    <% foods.forEach(food => { %>
+        <div class="d-flex">
+            <div class="card">
+                <div>fdcId: </div>
+                <div>Description: </div>
+                <% if (food.commonNames) { %>
+                    <div>common Names: </div>
+                <% } %>
+                <% if (food.brandOwner) { %>
+                    <div>Brand Owner: </div>
+                <% } %>
+                <% if (food.brandName) { %>
+                    <div>Brand Name: </div>
+                <% } %>
+                <% if (food.foodCategory) { %>
+                    <div>Category: </div>
+                <% } %>
+
+
+            </div>
+            <div class="card" style="width: 18rem;">
+                
+                    <div class="header"><%= food.fdcId %></div>
+                    <div class="body h-6"><%= food.description %></div>
+                    <div class="body"><%= food.commonNames %></div>
+                    <div class="body"><%= food.brandOwner %></div>
+                    <div class="body"><%= food.brandName %></div>
+                    <div class="body"><%= food.foodCategory %></div>
+                    <div class="mw-25">
+                        <a href="/foods/<%= food.fdcId %>" class="btn btn-success mb-4">Nutritional Info</a>
+                    </div>
+                
+            </div>
+
+            <% if( food.ingredients) { %>
+            <div class="card" style="max-width: 300px; min-width: 300px;">
+                <div class="header">Ingredients:</div>
+                <p class="card-text"><%= food.ingredients %></p>
+            </div>
+            <% } %>
+
+            <div class="card">
+                <table>
+                    <tr>
+                        Nutrient Summary (per 100g)
+                    </tr>
+                    <% let target = food.foodNutrients.find(nutrient => nutrient.nutrientNumber === "208") %>
+                    <tr>
+                        <% if (target) { %>
+                            <td><%= target.nutrientName %></td>
+                            <td><%= target.value %></td>
+                            <td><%= target.unitName %></td>
+                        <% } %>
+                    </tr>
+                    <% let targetB = food.foodNutrients.find(nutrient => nutrient.nutrientName === "Total lipid (fat)") %>
+                    
+                    <tr>
+                        <% if (targetB) { %>
+                            <td><%= targetB.nutrientName %></td>
+                            <td><%= targetB.value %></td>
+                            <td><%= targetB.unitName %></td>
+                        <% } %>
+                    </tr>
+                    <% let targetC = food.foodNutrients.find(nutrient => nutrient.nutrientName === "Protein") %>
+                    <tr>
+                        <% if (targetC) { %>
+                            <td><%= targetC.nutrientName %></td>
+                            <td><%= targetC.value %></td>
+                            <td><%= targetC.unitName %></td>
+                        <% } %>
+                    </tr>
+                    <% let targetD = food.foodNutrients.find(nutrient => nutrient.nutrientName === "Carbohydrate, by difference") %>
+                    <tr>
+                        <% if (targetD) { %>
+                            <td><%= targetD.nutrientName %></td>
+                            <td><%= targetD.value %></td>
+                            <td><%= targetD.unitName %></td>
+                        <% } %>
+                    </tr>
+                </table>
+                
+            </div>
+
+            <% if (food.foodMeasures) { %>
+            <div class="card">
+                <table>
+                    <tr>
+                        <td>Portion</td>
+                        <td>Grams</td>
+                    </tr>
+                    <% food.foodMeasures.forEach(size => { %>
+                        <tr>
+                            <td><%= size.disseminationText %></td>
+                            <td><%= size.gramWeight %></td>
+                        </tr>
+
+                    <% }) %>
+                </table>
+            </div>
+            <% } %>
+
+
+        </div>
+
+    <% }) %>
+
+    <form action="/foods/search" method="POST">
+        <div>
+            <input type="hidden" name="searchTerm" id="searchTerm" value="<%= pageInfo.query %>">
+            <input type="hidden" name="pageNumber" id="pageNumber" value="<%= pageInfo.currentPage + 1 %>">
+            <% if (pageInfo.currentPage !== pageInfo.totalPages) { %>
+                <button type="submit" class="btn btn-primary">Next Page</button>
+            <% } %>
+        </div>
+    </form>
+    
+</body>
+</html>

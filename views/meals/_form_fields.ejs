@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label for="name">Name</label>
+    <input required value ="<%= meal.name %>" type="text" name="name" id="name" class="form-control">
+</div>
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" class="form-control"><%= meal.description %></textarea>
+</div>
+
+<a href="/" class="btn btn-danger">Back</a>
+<button type="submit" class="btn btn-primary">Save</button>

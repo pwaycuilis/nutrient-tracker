@@ -1,0 +1,53 @@
+
+<style>
+    input[type='checkbox']:checked ~ .hidden-textbox{
+        visibility:visible;
+    }
+    .hidden-textbox {
+        visibility:hidden;
+    }
+    input[type='checkbox']:checked~.hidden-textbox {
+        visibility: visible;
+    }
+</style>
+
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" class="form-control"><%= food.description %></textarea>
+</div>
+
+
+<div class="form-group">
+    <label for="amountInGrams">amountInGrams</label>
+    <input type="number" name="amountInGrams" id="amountInGrams" default-value="100">
+</div>
+
+<table>
+    <tr>
+        Include Nutrients: 
+        <td>Number</td>
+        <td>Name</td>
+        <td>UnitName</td>
+        <td>Amount</td>
+        <td>Amount</td>
+    </tr>
+    <% nutrientList.forEach(nutrient => { %>
+
+    <div class="form-group d-flex">
+    <tr>
+        <td><%= nutrient.nutrientNumber %></td>
+        <td><%= nutrient.nutrientName %></td>
+        <td><%= nutrient.unitName %></td>
+        
+        <td>
+            <input type="checkbox" unchecked id="nutrientNums" name="nutrientNums" value="<%= JSON.stringify(new Object({ number: nutrient.nutrientNumber, name: nutrient.nutrientName, unitName: nutrient.unitName })) %>">
+            
+            <input type="number" class="hidden-textbox" name="amount" id="amount" min="0">
+        </td>
+    </tr>
+    </div>
+    <% }) %>
+</table>
+
+<a href="/" class="btn btn-danger">Back</a>
+<button type="submit" class="btn btn-primary">Save</button>

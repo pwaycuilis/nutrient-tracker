@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Meal</title>
+</head>
+<header>
+    <%- include('../partials/header') %>
+</header>
+<body>
+    <div class="container">
+        <h1 class="mb-4"><%= meal.name %></h1>
+        <div class="text-muted mb-2"><%= meal.date.toLocaleDateString() %></div>
+        <h2 class="mb-2"><%= meal.description %></h2>
+
+        <% meal.foods.forEach(food => { %>
+        <div>
+            <h6 class="d-inline"><%= food.description %></h6>
+            <div class="d-inline">( <%= food.amountInGrams %> grams )</div>
+            
+
+        </div>
+        <% }) %>
+
+        <h5>Nutrient Totals</h5>
+        <table>
+            <%- include('_sortButtons_compare') %>
+            <% dailyNutrientValues.forEach(nutrient => { %>
+                <tr>
+                    <td><%= nutrient.number %></td>
+                    <td><%= nutrient.name %></td>
+                    <td><%= nutrient.mealAmount %> </td>
+                    <td><%= nutrient.dailyAmount %></td>
+                    <td><%= nutrient.percentOfDV %></td>
+                    <td><%= nutrient.unitName %></td>
+        
+                </tr>
+            <% }) %>
+        </table>
+
+        <form action="/meals/<%= meal.id %>/addNutrients" method="POST">
+            
+            <div class="search-wrapper mb-2">
+                <label for="nutrientNums">Add Nutrients</label>
+                <input type="text" name="nutrientNums" id="nutrientNums">
+                <button type="submit" class="btn btn-primary">Add</button>
+                
+            </div>
+
+        </form>
+        
+
+        <a href="/" class="btn btn-secondary">All Meals</a>
+        <a href="/meals/edit/<%= meal.id %>" class="btn btn-info">Edit</a>
+    </div>
+</body>
+</html>

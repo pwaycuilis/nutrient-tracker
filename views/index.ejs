@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<header>
+    <%- include('partials/header') %>
+</header>
+<body>
+    
+    
+    <div class="container">
+        
+        <h2 class="mb-4">Meals</h2>
+        
+        <a href="/meals/new" class="btn btn-success">New Meal</a>
+        <% meals.forEach(meal => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title"><%= meal.name %></h2>
+                    <h6 class="card-title"><%= meal.date.toLocaleDateString() %></h6>
+                    <div><%= meal.description %></div>
+                    <a href="meals/<%= meal.id %>" class="btn btn-primary">Read More</a>
+                    <form action="/meals/<%= meal.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <h6>Foods: </h6>
+                    <% meal.foods.forEach(food => { %>
+                        <div class="card-subtitle mb-2">
+                            <%= food.description %> (<%= food.amountInGrams %> grams)
+                        </div>
+                    <% }) %>
+
+
+                    <h5 class="d-inline card-title border-bottom">Nutrient Totals</h5>
+                    <div class="d-inline border-bottom">(abridged list)</div>
+                    <table>
+                        <% meal.nutrientTotals.forEach(nutrient => { %>
+                            <% if (nutrient.number == "208" || nutrient.number == "203" || nutrient.number == "204" || nutrient.number == "205") { %>
+                            <tr>
+                                <td><%= nutrient.name %></td>
+                                <td><%= nutrient.amount %></td>
+                                <td><%= nutrient.unitName %></td>
+                            </tr>
+                            <% } %>
+                        <% }) %>
+                    </table>
+                    
+
+                </div>
+            </div>
+
+        <% }) %>
+        <h2 class="mb-4">Custom Food Items</h2>
+
+        <a href="/foods/custom/new" class="btn btn-success mb-4">New Food</a>
+        
+        
+        <% foods.forEach(food => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"><%= food.description %></h4>
+                    <div>Read More</div>
+                    <a href="/foods/custom/edit/<%= food.id %>" class="btn btn-info">Edit</a>
+                    <form action="/foods/<%= food.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+
+                    
+                        <table>
+                            <tr>
+                                <td>Nutrient</td>
+                                <td>Amount</td>
+                                <td>Unit</td>
+                            </tr>
+                            <% food.foodNutrients.forEach(nutrient => { %>
+                                <tr>
+                                    <td><%= nutrient.name %></td>
+                                    <td><%= nutrient.amount %></td>
+                                    <td><%= nutrient.unitName %></td>
+                                    
+                                </tr>
+                            <% }) %>
+                        </table>
+                    
+                </div>
+            </div>
+        
+        <% }) %>
+    </div>
+</body>
+</html>

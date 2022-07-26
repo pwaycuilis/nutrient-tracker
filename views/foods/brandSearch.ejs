@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <title>Food</title>
+    <a href="/" class="btn btn-danger">Home</a>
+    <form action="/foods/search" method="POST">
+        <div class="search-wrapper mb-4">
+            <label for="search">Search Food</label>
+            <input type="searchTerm" name="searchTerm" id="searchTerm">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <form action="/foods/brandSearch" method="POST">
+        <div class="search-wrapper mb-4">
+            <label for="search">Search Branded Food</label>
+            <input type="searchTerm" name="searchTerm" id="searchTerm">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+
+</head>
+<body>
+    <div class="header">Results: <%= foods.length %></div>
+    
+    <% foods.forEach(food => { %>
+        <div class="food-cards">
+            <div class="card"></div>
+                <div class="header"><%= food.fdcId %></div>
+                <div class="body"><%= food.description %></div>
+                <div class="body"><%= food.brandOwner %></div>
+                <div class="body"><%= food.brandName %></div>
+
+                <a href="/foods/<%= food.fdcId %>" class="btn btn-success mb-4">Nutritional Info</a>
+                
+        </div>
+
+    <% }) %>
+    
+</body>
+</html>

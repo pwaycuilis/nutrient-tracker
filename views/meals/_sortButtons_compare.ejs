@@ -1,0 +1,68 @@
+<tr>
+    <td>
+        <form action="/nutrients/sortCompare" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="number">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <input type="hidden" name="srcPath" id="srcPath" value="compare">
+
+            <button type="submit" class="btn btn-primary">Number</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sortCompare" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="name">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <input type="hidden" name="srcPath" id="srcPath" value="compare">
+
+            <button type="submit" class="btn btn-primary">Name</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sortCompare" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="mealAmount">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <input type="hidden" name="srcPath" id="srcPath" value="compare">
+
+            <button type="submit" class="btn btn-primary">MealAmount</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sortCompare" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="dailyAmount">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <input type="hidden" name="srcPath" id="srcPath" value="compare">
+
+            <button type="submit" class="btn btn-primary">DailyValue</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sortCompare" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="percentOfDV">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <input type="hidden" name="srcPath" id="srcPath" value="compare">
+
+            <button type="submit" class="btn btn-primary">PercentOfDV</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sortCompare" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="unitName">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <input type="hidden" name="srcPath" id="srcPath" value="compare">
+
+            <button type="submit" class="btn btn-primary">UnitName</button>
+        </form>
+    </td>
+</tr>

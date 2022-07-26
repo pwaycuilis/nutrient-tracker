@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/public/css/styles.css">
+    
+    <title>Food</title>
+</head>
+<header>
+    <%- include('../partials/header') %>
+</header>
+<body>
+    
+    <button onclick="history.back()">Go Back</button>
+    <h1><%= food.description %> (100 grams)</h1>
+
+    
+
+    <h6>fdcId: <%= food.fdcId %></h6>
+
+    
+    <div class="d-inline-flex">
+
+        <form action="/meals/:id" method="POST" class="border text-bg-light">
+            <%- include('_form_fields') %>
+        </form>
+    
+
+        <div class="container">
+            <% if (portions !== "No portion sizes available") { %>
+                
+                <table class="d-inline-flex">
+                    <tr>
+                        <td>Portion Sizes</td>
+                        <td>Gram Weight</td>
+                    </tr>
+                    <% portions.forEach(portion => { %>
+                    <tr>
+                        <td><%= portion.portionDescription %></td>
+                        <td><%= portion.gramWeight %></td>
+                    </tr>
+                    <% }) %>
+                </table>
+                
+            <% } %>
+        </div>
+    </div>
+            
+
+        
+        <table class="d-inline-flex table-bordered ">
+            <tr>
+                <td class="h6">Number</td>
+                <td class="h6">Name</td>
+                <td class="h6">Amount</td>
+            </tr>
+            <% food.foodNutrients.forEach(nutrient => { %>
+            <tr>      
+                    <td><%= nutrient.number %></td>
+                    <td><%= nutrient.name %></td>
+                    <td><%= nutrient.amount %> <%= nutrient.unitName %></td> 
+            </tr>
+            <% }) %>
+        </table>
+
+    
+
+    
+
+    
+        
+
+
+
+    
+
+
+    
+   
+    
+</body>
+</html>

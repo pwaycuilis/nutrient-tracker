@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<header>
+    <%- include('../partials/header') %>
+</header>
+<body>
+    <div class="container">
+        <h1 class="mb-4">New Custom Food</h1>
+
+        <form action="/foods/custom/<%= food.id %>?_method=PUT" method="POST">
+            <%- include('_form_fields_edit') %>
+        </form>
+    </div>
+</body>
+</html>

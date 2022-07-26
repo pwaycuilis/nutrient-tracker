@@ -1,0 +1,36 @@
+<tr>
+    <td>
+        <form action="/nutrients/sort" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="number">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <button type="submit" class="btn btn-primary">Number</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sort" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="name">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+
+            <button type="submit" class="btn btn-primary">Name</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sort" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="amount">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+            <button type="submit" class="btn btn-primary">Amount</button>
+        </form>
+    </td>
+    <td>
+        <form action="/nutrients/sort" method="POST">
+            <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+            <input type="hidden" name="sortBy" id="sortBy" value="unitName">
+            <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+            <button type="submit" class="btn btn-primary">UnitName</button>
+        </form>
+    </td>
+</tr>

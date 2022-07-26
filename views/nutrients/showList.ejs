@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head') %>
+    </head>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <body>
+        <form action="/nutrients/addNutrientsToMeal" method="POST" class="border mb-4 mt-4">
+        
+            <div class="form-group">
+                <label for="mealId">Add Nutrients to Meal:</label>
+                <select name="mealId" id="mealId">
+                    <% meals.forEach(meal => { %>
+                        <option value="<%= meal.id %>"><%= meal.name %></option>
+                    <% }) %>
+
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add to Meal</button>
+
+            <table class="table-bordered">
+                <tr>
+                    <td>Number</td>
+                    <td>Name</td>
+                    <td>UnitName</td>
+                </tr>
+                <% nutrientList.forEach(nutrient => { %>
+
+                <div class="form-group">
+                <tr>
+                    <td><%= nutrient.nutrientNumber %></td>
+                    <td><%= nutrient.nutrientName %></td>
+                    <td><%= nutrient.unitName %></td>
+                    <td>
+                        <input type="checkbox" id="nutrientNums" name="nutrientNums" value="<%= nutrient.nutrientNumber %>">
+                    </td>
+                </tr>
+                </div>
+                <% }) %>
+            </table>
+        </form>
+
+        
+    </body>
+
+
+</html>

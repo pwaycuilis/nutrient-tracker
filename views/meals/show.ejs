@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Meal</title>
+</head>
+<header>
+    <%- include('../partials/header') %>
+</header>
+<body>
+    <div class="container">
+        <h1 class="mb-4"><%= meal.name %></h1>
+        <div class="text-muted mb-2"><%= meal.date.toLocaleDateString() %></div>
+        <h2 class="mb-2"><%= meal.description %></h2>
+    
+
+        <table>
+            <% meal.foods.forEach(food => { %>
+            <tr>
+                <td><%= food.description %></td>
+                <td>( <%= food.amountInGrams %> grams )</td>
+                <td><a href="//localhost:7000/meals/<%= meal.id %>/foods/<%= food.id %>" class="btn btn-info">Show Nutrients</a></td>
+                <td><a href="<%= meal.id %>/removeFood/<%= food.id %>" class="btn btn-danger">Remove</a></td>
+            </tr>
+            <% }) %>
+        </table>
+       
+        
+
+        <h5>Nutrient Totals</h5>
+        
+
+
+        <table>
+            <tr>
+                <td>Sort By:</td>
+            </tr>
+            <% if (meal.nutrientTotals.length > 0) { %>
+
+            <%- include('../partials/sortButtons') %>
+            
+            <% } %>
+            <% meal.nutrientTotals.forEach(nutrient => { %>
+                <tr>
+                    <td><%= nutrient.number %>&nbsp;</td>
+                    <td><%= nutrient.name %></td>
+                    <td><%= nutrient.amount %></td>
+                    <td><%= nutrient.unitName %></td>
+        
+                </tr>
+            <% }) %>
+        </table>
+        <% if (meal.foods.length > 0 ){ %>
+
+        <div class="container">
+            <form action="/meals/<%= meal.id %>/addNutrients" method="POST">
+            
+                <div class="search-wrapper mb-2">
+                    <label for="nutrientNums">Add Nutrients</label>
+                    <input type="text" name="nutrientNums" id="nutrientNums">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    
+                </div>
+
+            </form>
+            <form action="/meals/<%= meal.id %>/removeNutrients" method="POST">
+            
+                <div class="search-wrapper mb-4">
+                    <label for="nutrientNums">Remove Nutrients</label>
+                    <input type="text" name="nutrientNums" id="nutrientNums">
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                    
+                </div>
+            </form>
+        </div>
+        <% } %>
+        
+
+        <a href="/" class="btn btn-secondary">All Meals</a>
+        <a href="/meals/edit/<%= meal.id %>" class="btn btn-info">Edit</a>
+        <a href="/meals/compareToGuideline/<%= meal.id %>" class="btn btn-primary">Daily Guideline</a>
+    </div>
+</body>
+</html>
